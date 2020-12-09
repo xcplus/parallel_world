@@ -1,4 +1,4 @@
-class v1::BaseController < ApplicationController
+class V1::BaseController < ApplicationController
   class AuthorizationError < StandardError;end
   class NoTokenError < StandardError;end
   class PermissionError < StandardError;end
