@@ -25,7 +25,7 @@ class BaseController < ApplicationController
   end
 
   def authorization_error
-    render json: { ret: -1, msg: I18n.t('authorization.login_error') data: nil }
+    render json: { ret: -1, msg: I18n.t('authorization.login_error'), data: nil }
   end
 
   def token_error
