@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     instance_eval(File.read(Rails.root.join("config/routes/#{routes_name}.rb")))
   end
 
-  resources :uploads, only: [:create]
+  resources :uploads, only: [:create, :show]
 
   namespace :v1, defaults: {format: :json} do
     draw :v1
