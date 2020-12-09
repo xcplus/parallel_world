@@ -10,11 +10,11 @@ class BaseController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
-  rescue_from NoTokenError,
-              JWT::VerificationError,
-              JWT::DecodeError,
-              JWT::ExpiredSignature,
-              with: :token_error
+  # rescue_from NoTokenError,
+  #             JWT::VerificationError,
+  #             JWT::DecodeError,
+  #             JWT::ExpiredSignature,
+  #             with: :token_error
 
   helper_method :current_user
   
