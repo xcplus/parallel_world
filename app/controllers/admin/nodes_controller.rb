@@ -1,0 +1,40 @@
+module Admin
+  class NodesController < BaseController
+    before_action :set_brand
+    before_action :set_node, only: [:show, :update, :destroy]
+
+    def index
+      @nodes = @brand.nodes.offset(params[:offset].to_i).limit(params[:limit] || 20)
+    end
+
+    def create
+      @node = @brand.nodes.create!(node_params)
+    end
+
+    def show
+      
+    end
+
+    def update
+      @node.update_attributes!(node_params)
+    end
+
+    def destroy
+      @node.destroy
+    end
+
+    private
+
+    def set_brand
+      @brand = Brand.find(params[:brand_id])
+    end
+
+    def set_node
+      @node = @brand.nodes.find(params[:id])
+    end
+
+    def node_params
+      params.require(:node).permit(:english_name, :name, :status)
+    end
+  end
+end

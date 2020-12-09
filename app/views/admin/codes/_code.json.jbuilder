@@ -1,0 +1,1 @@
+json.extract! code, :cid, :name, :id, :status, :price

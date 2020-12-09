@@ -1,0 +1,1 @@
+json.extract! brand, :name, :english_name, :id, :status
