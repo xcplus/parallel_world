@@ -1,4 +1,7 @@
 class UploadsController < ApplicationController
+  before_action :require_disk_service!, only: :show
+  before_action :set_blob, only: :show
+
   def create
     @upload = Upload.create!(params.permit(:file))
     render json: { ret: 1,  data: { ent: @upload.attached_file_url } }
