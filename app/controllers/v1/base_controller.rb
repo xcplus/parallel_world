@@ -33,7 +33,7 @@ class BaseController < ApplicationController
   end
 
   def record_invalid(invalid)
-    render json: { ret: -1, msg: data: invalid.record.errors.full_messages.join(","), data: nil }
+    render json: { ret: -1, msg: invalid.record.errors.full_messages.join(","), data: nil }
   end
 
   def wxx_token_error
