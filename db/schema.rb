@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_10_151844) do
+ActiveRecord::Schema.define(version: 2020_12_10_155824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,9 +86,11 @@ ActiveRecord::Schema.define(version: 2020_12_10_151844) do
     t.bigint "brand_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "style", comment: "配置类型"
     t.index ["brand_id"], name: "index_codes_on_brand_id"
     t.index ["cid"], name: "index_codes_on_cid"
     t.index ["node_id"], name: "index_codes_on_node_id"
+    t.index ["style"], name: "index_codes_on_style"
     t.index ["sub_node_id"], name: "index_codes_on_sub_node_id"
   end
 
