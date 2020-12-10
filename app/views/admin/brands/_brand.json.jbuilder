@@ -1,1 +1,1 @@
-json.extract! brand, :name, :english_name, :id, :status
+json.extract! brand, :name, :english_name, :id, :status, :created_at, :updated_at

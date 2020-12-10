@@ -1,1 +1,1 @@
-json.extract! role, :cid, :name, :id
+json.extract! role, :cid, :name, :id, :created_at, :updated_at

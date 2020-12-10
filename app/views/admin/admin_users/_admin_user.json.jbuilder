@@ -1,0 +1,1 @@
+json.extract! admin_user, :role_options, :name, :id, :created_at, :updated_at

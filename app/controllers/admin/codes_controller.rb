@@ -34,7 +34,7 @@ module Admin
     end
 
     def code_params
-      params.require(:code).permit(:cid, :name, :status, :price)
+      params.require(:code).permit(:cid, :name, :status, :price, :style)
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_145819) do
+ActiveRecord::Schema.define(version: 2020_12_10_151844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_145819) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "name"
-    t.string "password_hash"
+    t.string "password_digest"
     t.string "phone"
     t.string "email"
     t.string "role_options", comment: "角色cids", array: true
@@ -102,6 +102,23 @@ ActiveRecord::Schema.define(version: 2020_12_08_145819) do
     t.index ["brand_id"], name: "index_nodes_on_brand_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "status", default: 0, comment: "订单状态 0 待跟进 1 已成交 2 成交失败"
+    t.bigint "car_id", null: false
+    t.bigint "brand_id", null: false
+    t.bigint "node_id", null: false
+    t.bigint "sub_node_id", null: false
+    t.string "order_no", comment: "订单编号"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["brand_id"], name: "index_orders_on_brand_id"
+    t.index ["car_id"], name: "index_orders_on_car_id"
+    t.index ["node_id"], name: "index_orders_on_node_id"
+    t.index ["sub_node_id"], name: "index_orders_on_sub_node_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name", comment: "角色名"
     t.string "cid", comment: "角色编码"
@@ -161,6 +178,11 @@ ActiveRecord::Schema.define(version: 2020_12_08_145819) do
   add_foreign_key "codes", "nodes"
   add_foreign_key "codes", "sub_nodes"
   add_foreign_key "nodes", "brands"
+  add_foreign_key "orders", "brands"
+  add_foreign_key "orders", "cars"
+  add_foreign_key "orders", "nodes"
+  add_foreign_key "orders", "sub_nodes"
+  add_foreign_key "orders", "users"
   add_foreign_key "sub_nodes", "brands"
   add_foreign_key "sub_nodes", "nodes"
 end

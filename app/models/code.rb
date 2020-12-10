@@ -5,6 +5,7 @@ class Code < ApplicationRecord
   # t.string :name, comment: "名字"
   # t.float :price, default: 0.0
   # t.integer :status, default: 0, comment: "状态 0 可见 1 不可见"
+  # t.string :style, comment: "配置类型"
 
   belongs_to :sub_node
   belongs_to :node

@@ -1,1 +1,1 @@
-json.extract! sub_node, :name, :english_name, :id, :status
+json.extract! sub_node, :name, :english_name, :id, :status, :created_at, :updated_at

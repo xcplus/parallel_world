@@ -1,1 +1,1 @@
-json.extract! code, :cid, :name, :id, :status, :price
+json.extract! code, :cid, :name, :id, :status, :price, :created_at, :updated_at, :style

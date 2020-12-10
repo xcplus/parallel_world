@@ -1,4 +1,4 @@
-json.extract! car, :msrp, :particular_year, :sell_price, :freight, :open_fee, :oversea_fee, :cid, :code_options, :status
+json.extract! car, :msrp, :particular_year, :sell_price, :freight, :open_fee, :oversea_fee, :cid, :code_options, :status, :created_at, :updated_at
 json.brand do
   json.name car.brand.name
   json.english_name car.brand.english_name

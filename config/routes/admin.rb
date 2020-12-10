@@ -4,7 +4,7 @@
 resources :users, only: [:index] do
   member do
     # 更新状态
-    put :status
+    post :status
   end
 end
 
@@ -29,4 +29,9 @@ resources :roles, only: [:create, :show, :update, :destroy, :index]
 # 后台用户管理
 resources :admin_users, only: [:create, :show, :update, :destroy, :index]
 
-# 角色和后台用户关联
+# 订单管理
+resources :orders, only: [:index] do
+  member do
+    put :status
+  end
+end
