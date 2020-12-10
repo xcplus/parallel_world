@@ -40,5 +40,8 @@ module ParallelWorld
 
     config.time_zone = 'Beijing'
     config.active_record.default_timezone = :local
+    
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
   end
 end

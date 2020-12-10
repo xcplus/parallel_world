@@ -1,4 +1,5 @@
 class Admin::BaseController < ApplicationController
+  include ActionController::Cookies
   class AuthorizationError < StandardError;end
   class NoTokenError < StandardError;end
   # class PermissionError < StandardError;end
@@ -18,12 +19,20 @@ class Admin::BaseController < ApplicationController
   #             JWT::ExpiredSignature,
   #             with: :token_error
 
-  # helper_method :current_user
+  helper_method :current_user
+
+  before_action :required_login
 
   private
 
+  def required_login
+    unless current_user.present?
+      render json: { ret: -1, msg: '请先登陆', data: nil } and return
+    end
+  end
+
   def current_user
-    # @current_user ||= User.find_by(session_key: request.headers['wxSession']) 
+    @current_user ||= AdminUser.find_by(id: cookies.signed[:blckd])
   end
 
   def authorization_error

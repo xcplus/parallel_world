@@ -1,4 +1,6 @@
 # 登录
+post "login", to: "sessions#create"
+post "logout", to: "sessions#destroy"
 
 # 用户管理
 resources :users, only: [:index] do
