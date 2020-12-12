@@ -1,4 +1,4 @@
-module Admin
+module V1 
   class SubNodesController < BaseController
     before_action :set_node
 
