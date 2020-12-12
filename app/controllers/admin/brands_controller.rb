@@ -2,10 +2,6 @@ module Admin
   class BrandsController < BaseController
     before_action :set_brand, only: [:show, :update, :destroy]
     def index
-      cookies.signed[:blckd] = {
-        value: AdminUser.first.id,
-        expires: 1.week
-      }
       @brands = Brand.limit(params[:limit] || 20).offset(params[:offset].to_i)
     end
 

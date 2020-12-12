@@ -11,6 +11,9 @@ module V1
       render json: result
     end
 
+    def me
+    end
+
     private
 
     def user_params

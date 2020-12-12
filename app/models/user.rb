@@ -15,6 +15,8 @@ class User < ApplicationRecord
   # t.datetime :last_time, comment: "最后一次登陆时间"
   enum status: [:checking, :approved, :refused, :forbidden]
 
+  has_many :orders
+
   # 插入或更新
   def insert_or_update(opts)
     opts.symbolize_keys!
