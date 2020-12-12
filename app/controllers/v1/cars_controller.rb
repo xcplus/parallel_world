@@ -25,7 +25,7 @@ module V1
       cal.merge!({brand_id: params[:brand_id]}) if params[:brand_id].present?
       cal.merge!({node_id: params[:node_id]}) if params[:node_id].present?
       cal.merge!({sub_node_id: params[:sub_node_id]}) if params[:sub_node_id].present?
-      options.merge!({cal}) if !cal.blank?
+      options.merge!(cal) if !cal.blank?
       options.merge!({particular_year: params[:particular_year]}) if params[:particular_year].present?
       options.merge!({msrp: params[:msrp]}) if params[:msrp].present?
       sort.merge!({msrp: params[:sort][:msrp].to_sym}) if params[:sort] && %w{desc asc}.include?(params[:sort][:msrp])
