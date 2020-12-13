@@ -36,7 +36,7 @@ class User < ApplicationRecord
       json_data = JSON.parse(json_str)
       Rails.logger.info "微信json-------#{json_data}"
       if json_data["purePhoneNumber"].present?
-        self.update_column(:phone_num, json_data["purePhoneNumber"])
+        self.update_column(:phone, json_data["purePhoneNumber"])
         return { ret: 1, data: { ent: "返回成功"} }
       else
         return { ret: -1, msg: "手机号绑定失败", data: nil }
