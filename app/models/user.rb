@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :orders
 
   # 插入或更新
-  def insert_or_update(opts)
+  def self.insert_or_update(opts)
     opts.symbolize_keys!
     user = User.find_or_initialize_by(openid: opts[:openid])
     user.session_key = opts[:session_key]

@@ -17,7 +17,7 @@ module V1
     }
   }
 =end
-    def index
+    def create
       options = {status: "online"}
       cal = {}
       sort = {}
