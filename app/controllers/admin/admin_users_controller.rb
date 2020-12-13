@@ -19,7 +19,9 @@ module Admin
 
     def destroy
       @admin_user = AdminUser.find(params[:id])
-      @admin_user.destroy!
+      if @admin_user.id != 1
+        @admin_user.destroy!
+      end
     end
 
     private
