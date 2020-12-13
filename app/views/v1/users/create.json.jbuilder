@@ -3,7 +3,7 @@ json.data do
   json.ent do
     json.nickname current_user.nickname
     json.avatar current_user.avatar
-    json.phone, current_user.phone
+    json.phone current_user.phone
     json.email current_user.email
     json.company_name current_user.company_name
     json.company_addr current_user.company_addr
