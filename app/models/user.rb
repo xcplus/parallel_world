@@ -17,6 +17,8 @@ class User < ApplicationRecord
 
   has_many :orders
 
+  validates :session_key, presence: true
+
   # 插入或更新
   def self.insert_or_update(opts)
     opts.symbolize_keys!
