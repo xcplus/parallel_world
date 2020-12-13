@@ -8,7 +8,7 @@ module Admin
           value: admin_user.id,
           expires: 1.week
         }
-        render json: {ret: 1, data: {ent: "登陆成功", user_id: admin_user.id}}
+        render json: {ret: 1, data: {ent: {user_id: admin_user.id}}}
       else
         render json: { ret: -1, msg: '用户名或密码错误', data: nil }
       end
