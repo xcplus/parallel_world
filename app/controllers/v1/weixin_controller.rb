@@ -5,6 +5,7 @@ module V1
     # {code: "code的值"}
     def create
       res = get_wx_user_session_key if params[:code].present?
+      Rails.logger.info "res========#{res.inspect}"
       @user = User.insert_or_update(JSON.parse(res))
     end
 
