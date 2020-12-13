@@ -15,6 +15,8 @@ resources :brands, only: [:index]
 resources :nodes, only: [:index]
 # 分车系
 resources :sub_nodes, only: [:index]
+# 配置项
+resources :codes, only: [:index]
 # 获取个人信息
 post :me, to: "users#me"
 # 订单管理
