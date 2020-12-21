@@ -4,5 +4,6 @@ module Statusable
     # status 默认0可见 1 不可见
     enum status: [ :visible, :invisible ]
     validates :status, inclusion: { in: %w(visible invisible) }
+    default_scope  { visible }
   end
 end

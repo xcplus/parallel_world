@@ -14,6 +14,19 @@ class SubNode < ApplicationRecord
 
   before_validation :set_bid
 
+
+  def styles
+    opts = {}
+    codes.each do |x|
+      if opts[x.style].present?
+        opts[x.style] << x.name
+      else
+        opts[x.style] = [x.name]
+      end
+    end
+    opts
+  end
+
   private
 
   def set_bid

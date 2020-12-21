@@ -50,5 +50,10 @@ module V1
       @cars = @cars.where("code_options @> ARRAY[?]::varchar[]", @code_ids) if @code_ids.present?
       @cars = @cars.offset(params[:offset].to_i).limit(params[:limit] || 20)
     end
+
+
+    def show
+      @car = Car.includes(:brand, :node, :sub_node).find(params[:id])
+    end
   end
 end

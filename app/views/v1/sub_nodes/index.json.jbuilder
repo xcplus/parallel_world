@@ -6,7 +6,7 @@ json.data do
     json.total total_count
     json.more (params[:offset].to_i + (params[:limit] || 20).to_i) < total_count
     json.items do
-      json.array! @sub_nodes, partial: 'admin/sub_nodes/sub_node', as: :sub_node
+      json.array! @sub_nodes, partial: 'v1/sub_nodes/sub_node', as: :sub_node
     end
   end
 end

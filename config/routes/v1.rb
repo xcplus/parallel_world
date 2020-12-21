@@ -8,7 +8,7 @@ resources :users, only: [:create] do
   end
 end
 # 车源列表以及搜索
-resources :cars, only: [:create]
+resources :cars, only: [:create, :show]
 # 品牌
 resources :brands, only: [:index]
 # 车系
