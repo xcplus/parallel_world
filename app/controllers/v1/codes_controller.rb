@@ -12,7 +12,7 @@ module V1
       options.merge!({sub_node_id: params[:sub_node_id]}) if params[:sub_node_id].present?
       options.merge!({car_id: params[:car_id]}) if params[:car_id].present?
       options.merge!({style: params[:style]})
-      @codes = Code.where(options).offset(params[:offset].to_i).limit(params[:limit] || 20)
+      @codes = Code.where(options).offset(params[:offset].to_i).limit(params[:limit].to_i || 20)
     end
   end
 end

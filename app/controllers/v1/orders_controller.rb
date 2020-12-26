@@ -1,7 +1,7 @@
 module V1
   class OrdersController < BaseController
     def index
-      @orders = current_user.orders.includes(:user, :car, :brand, :sub_node, :node).order("created_at desc").limit(params[:limit] || 20).offset(params[:offset].to_i)
+      @orders = current_user.orders.includes(:user, :car, :brand, :sub_node, :node).order("created_at desc").limit(params[:limit].to_i || 20).offset(params[:offset].to_i)
     end
 
     def create

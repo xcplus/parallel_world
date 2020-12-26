@@ -2,7 +2,7 @@ module V1
   class NodesController < BaseController
     before_action :set_brand
     def index
-      @nodes = @brand.nodes.offset(params[:offset].to_i).limit(params[:limit] || 20)
+      @nodes = @brand.nodes.offset(params[:offset].to_i).limit(params[:limit].to_i || 20)
     end
 
     private
