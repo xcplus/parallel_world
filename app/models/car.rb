@@ -18,6 +18,8 @@ class Car < ApplicationRecord
 
   enum status: [:offline, :online, :sold, :locked]
 
+  scope :visible_car, -> { includes(:brand, :node, :sub_node).online.where(brands: {status: "visible"}, nodes: {status: "visible"}, sub_nodes: {status: "visible"}) }
+
   before_validation do
     self.code_options = code_options.to_a.uniq
     self.node_id = sub_node.node_id

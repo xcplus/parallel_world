@@ -44,7 +44,7 @@ module V1
         end
         @code_ids = Code.where(cal).where(arr).pluck(:cid)
       end
-      @cars = Car.includes(:brand, :node, :sub_node).online
+      @cars = Car.visible_car
       @cars = @cars.where(options) if !options.blank?
       @cars = @cars.order(sort) if !sort.blank?
       @cars = @cars.where("code_options @> ARRAY[?]::varchar[]", @code_ids) if @code_ids.present?

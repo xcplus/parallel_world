@@ -18,7 +18,7 @@ json.sub_node do
   json.status car.sub_node&.status
 end
 json.codes do
-  if car.present? && car.codes.present?
+  if car.present? && !car.codes.blank?
     json.array! car.codes, partial: 'admin/codes/code', as: :code
   else
     []
