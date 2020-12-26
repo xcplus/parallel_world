@@ -34,6 +34,6 @@ resources :admin_users, only: [:create, :show, :update, :destroy, :index]
 # 订单管理
 resources :orders, only: [:index] do
   member do
-    put :status
+    post :status
   end
 end
