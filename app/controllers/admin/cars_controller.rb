@@ -5,9 +5,13 @@ module Admin
 
     def index
       cal = {}
+      cal.merge!({id: params[:car_id]}) if params[:car_id].present?
       cal.merge!({brand_id: params[:brand_id]}) if params[:brand_id].present?
       cal.merge!({node_id: params[:node_id]}) if params[:node_id].present?
       cal.merge!({sub_node_id: params[:sub_node_id]}) if params[:sub_node_id].present?
+      if params[:limit].blank?
+        params[:limit] = 20
+      end
       @cars = Car.visible_car.where(cal).offset(params[:offset].to_i).limit(params[:limit].to_i || 20)
     end
 
