@@ -18,6 +18,16 @@ class Order < ApplicationRecord
 
   enum status: [:dealing, :dealed, :failed]
 
+  scope :by_time, -> (start_time, end_time) {
+    if start_time.present? && end_time.present?
+      where({created_at: Time.parse(start_time).beginning_of_day..Time.parse(end_time).end_of_day})
+    elsif start_time.present?
+      where({created_at: Time.parse(start_time).beginning_of_day..Time.now})
+    elsif end_time.present?
+      where("created_at <= ?", Time.parse(end_time).end_of_day)
+    end
+  }
+
   before_validation do
     self.node_id = car.node_id
     self.brand_id = car.brand_id

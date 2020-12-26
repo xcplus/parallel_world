@@ -4,11 +4,11 @@ module Admin
     before_action :set_car, only: [:update, :destroy]
 
     def index
-      @cars = if params[:sub_node_id].present?
-        SubNode.find(params[:sub_node_id]).cars.includes(:brand, :node, :sub_node).offset(params[:offset].to_i).limit(params[:limit] || 20)
-      else
-        Car.includes(:brand, :node, :sub_node).offset(params[:offset].to_i).limit(params[:limit] || 20)
-      end
+      cal = {}
+      cal.merge!({brand_id: params[:brand_id]}) if params[:brand_id].present?
+      cal.merge!({node_id: params[:node_id]}) if params[:node_id].present?
+      cal.merge!({sub_node_id: params[:sub_node_id]}) if params[:sub_node_id].present?
+      @cars = Car.includes(:brand, :node, :sub_node).where(cal).offset(params[:offset].to_i).limit(params[:limit] || 20)
     end
 
     def create
