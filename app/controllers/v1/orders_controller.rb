@@ -5,7 +5,7 @@ module V1
     end
 
     def create
-      @order = current_user.create!(params.permit(:car_id))
+      @order = current_user.orders.create!(params.permit(:car_id))
     end
 
     def status
