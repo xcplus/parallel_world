@@ -18,9 +18,9 @@ module V1
   }
 =end
     def create
-      options = {status: "online"}
       cal = {}
       sort = {}
+      options = {}
       
       cal.merge!({brand_id: params[:brand_id]}) if params[:brand_id].present?
       cal.merge!({node_id: params[:node_id]}) if params[:node_id].present?
