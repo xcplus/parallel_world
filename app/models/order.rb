@@ -40,7 +40,7 @@ class Order < ApplicationRecord
     self.order_no = Time.now.strftime("%Y%m%d%H%M%S") + Time.now.usec.to_s.ljust(6, "0")
   end
 
-  after_update :change_dealed_to_car
+  after_commit :change_dealed_to_car
 
   def change_dealed_to_car
     if dealed?
