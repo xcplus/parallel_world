@@ -48,7 +48,10 @@ module V1
       @cars = @cars.where(options) if !options.blank?
       @cars = @cars.order(sort) if !sort.blank?
       @cars = @cars.where("code_options @> ARRAY[?]::varchar[]", @code_ids) if @code_ids.present?
-      @cars = @cars.offset(params[:offset].to_i).limit(params[:limit].to_i || 20)
+      if params[:limit].blank?
+        params[:limit] = 20
+      end
+      @cars = @cars.offset(params[:offset].to_i).limit(params[:limit].to_i)
     end
 
 
