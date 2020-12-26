@@ -1,6 +1,6 @@
 module Admin
   class NodesController < BaseController
-    before_action :set_brand
+    before_action :set_brand, only: [:index, :create]
     before_action :set_node, only: [:show, :update, :destroy]
 
     def index
@@ -30,7 +30,7 @@ module Admin
     end
 
     def set_node
-      @node = @brand.nodes.find(params[:id])
+      @node = Node.find(params[:id])
     end
 
     def node_params
