@@ -34,7 +34,7 @@ module Admin
     end
 
     def sub_node_params
-      params.require(:sub_node).permit(:english_name, :name, :status)
+      params.require(:sub_node).permit(:english_name, :name, :status, :price)
     end
   end
 end
