@@ -51,7 +51,7 @@ module V1
       if params[:limit].blank?
         params[:limit] = 20
       end
-      @cars = @cars.offset(params[:offset].to_i).limit(params[:limit].to_i)
+      @cars = @cars.order("created_at desc").offset(params[:offset].to_i).limit(params[:limit].to_i)
     end
 
 

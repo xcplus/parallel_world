@@ -12,7 +12,7 @@ module Admin
       if params[:limit].blank?
         params[:limit] = 20
       end
-      @cars = Car.visible_car.where(cal).offset(params[:offset].to_i).limit(params[:limit].to_i || 20)
+      @cars = Car.visible_car.where(cal).order("created_at desc").offset(params[:offset].to_i).limit(params[:limit].to_i || 20)
     end
 
     def create
