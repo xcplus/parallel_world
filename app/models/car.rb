@@ -20,14 +20,36 @@ class Car < ApplicationRecord
 
   scope :visible_car, -> { includes(:brand, :node, :sub_node).where(brands: {status: "visible"}, nodes: {status: "visible"}, sub_nodes: {status: "visible"}) }
 
+  validates :brand, :node, :sub_node, presence: true
+
   before_validation do
-    self.code_options = code_options.to_a.uniq
-    self.node_id = sub_node.node_id
-    self.brand_id = sub_node.brand_id
+    if sub_node.blank?
+      errors.add(:base, "必须要有车分系")
+    else
+      self.code_options = code_options.to_a.uniq
+      self.node_id = sub_node.node_id
+      self.brand_id = sub_node.brand_id
+    end
+  end
+
+  before_validation do
+    if !code_options.blank?
+      cds = sub_node&.codes&.pluck(:cid) || []
+      arr = code_options - cds
+      if !arr.blank?
+        errors.add(:codes, "配置项#{arr.join(", ")}该车分系下没有")
+      end
+    end
   end
 
   # 应该要用缓存
   def codes
     sub_node.codes.where(cid: code_options)
+  end
+
+  after_commit :recharge_msrp
+  def recharge_msrp
+    codes_fee = codes.sum(:price)
+    self.msrp = ("%.2f" % (open_fee.to_f + oversea_fee.to_f + codes_fee.to_f)).to_f
   end
 end

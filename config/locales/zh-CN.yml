@@ -3,9 +3,18 @@
     activerecord:
       model:
         user: 用户
+        car: 车源
+        brand: 品牌
+        node: 车系
+        sub_node: 车分系
       attributes:
         user:
           nickname: 用户昵称
+        car:
+          brand: 品牌
+          node: 车系
+          sub_node: 车分系
+          codes: 配置项
       errors:
         messages:
           record_invalid: '验证失败: %{errors}'

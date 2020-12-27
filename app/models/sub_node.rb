@@ -17,7 +17,7 @@ class SubNode < ApplicationRecord
 
   def styles
     opts = {}
-    codes.each do |x|
+    codes.search_codes.each do |x|
       if opts[x.style].present?
         opts[x.style] << x.name
       else

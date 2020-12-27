@@ -15,6 +15,10 @@ class Code < ApplicationRecord
   
   validates_uniqueness_of :cid, scope: :sub_node_id
 
+  scope :search_codes, -> {where.not(style: "运费")}
+
+  scope :trans_fee, -> { where(style: "运费") }
+
   private
 
   def set_bid

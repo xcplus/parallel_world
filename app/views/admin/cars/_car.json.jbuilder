@@ -16,6 +16,7 @@ json.sub_node do
   json.name car.sub_node&.name
   json.english_name car.sub_node&.english_name
   json.status car.sub_node&.status
+  json.price car.sub_node&.price
 end
 json.codes do
   if car.present? && !car.codes.blank?

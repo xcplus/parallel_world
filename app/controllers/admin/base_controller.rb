@@ -21,7 +21,7 @@ class Admin::BaseController < ApplicationController
 
   helper_method :current_user
 
-  before_action :required_login
+  # before_action :required_login
 
   private
 
