@@ -9,6 +9,7 @@ module Admin
       cal.merge!({brand_id: params[:brand_id]}) if params[:brand_id].present?
       cal.merge!({node_id: params[:node_id]}) if params[:node_id].present?
       cal.merge!({sub_node_id: params[:sub_node_id]}) if params[:sub_node_id].present?
+      cal.merge!({status: params[:status]}) if params[:status].present?
       if params[:limit].blank?
         params[:limit] = 20
       end
