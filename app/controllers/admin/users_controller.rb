@@ -10,7 +10,11 @@ module Admin
 
     def status
       @user = User.find(params[:id])
-      @user.update_attributes!(params.require(:user).permit(:status))
+      if params[:user][:status] == "refused"
+        @user.destroy
+      else
+        @user.update_attributes!(params.require(:user).permit(:status))
+      end
     end
   end
 end
