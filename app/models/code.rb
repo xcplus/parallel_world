@@ -19,6 +19,8 @@ class Code < ApplicationRecord
 
   scope :trans_fee, -> { where(style: "运费") }
 
+  default_scope { order(created_at: :desc) }
+
   private
 
   def set_bid

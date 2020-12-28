@@ -4,7 +4,9 @@ module Admin
     before_action :set_code, only: [:show, :update, :destroy]
 
     def index
-      @codes = @sub_node.codes.offset(params[:offset].to_i).limit(params[:limit].to_i || 20)
+      opts = {}
+      opts = ["codes.name like ?", "%#{params[:name].strip}%"] if params[:name].present?
+      @codes = @sub_node.codes.where(opts).offset(params[:offset].to_i).limit(params[:limit].to_i || 20)
     end
 
     def create
