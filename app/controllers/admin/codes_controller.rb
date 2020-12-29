@@ -4,8 +4,15 @@ module Admin
     before_action :set_code, only: [:show, :update, :destroy]
 
     def index
-      opts = {}
-      opts = ["codes.name like ?", "%#{params[:name].strip}%"] if params[:name].present?
+      opts = []
+      if params[:name].present?
+        opts[0] = "codes.name like ?"
+        opts[1] = "%#{params[:name].strip}%"
+      end
+      if params[:cid].present?
+        opts[0] = opts[0].to_s + " OR codes.cid like ?"
+        opts.push("%#{params[:cid].strip}%")
+      end
       @codes = @sub_node.codes.where(opts).offset(params[:offset].to_i).limit(params[:limit].to_i || 20)
     end
 
