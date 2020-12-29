@@ -55,7 +55,7 @@ class Car < ApplicationRecord
 
   after_commit :recharge_msrp
   def recharge_msrp
-    codes_fee = codes.map{|x| x.price}.sum()
+    codes_fee = codes.map{|x| x&.price.to_f}.sum()
     self.update_column(:msrp, ("%.2f" % (codes_fee.to_f + sub_node.price.to_f)).to_f)
   end
 end
