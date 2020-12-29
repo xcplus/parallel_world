@@ -49,7 +49,7 @@ class Car < ApplicationRecord
     code_options.each do |x|
       ft = ces.select{|y| y.cid == x}.first
       arr << ft
-    end
+    end if !ces.blank?
     arr
   end
 
