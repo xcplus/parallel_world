@@ -10,7 +10,12 @@ module Admin
         opts[1] = "%#{params[:name].strip}%"
       end
       if params[:cid].present?
-        opts[0] = opts[0].to_s + " OR codes.cid like ?"
+        code_sql = if opts[0].to_s.blank?
+          "codes.cid like ?"
+        else
+          " OR codes.cid like ?"
+        end
+        opts[0] = opts[0].to_s + code_sql
         opts.push("%#{params[:cid].strip}%")
       end
       @codes = @sub_node.codes.where(opts).offset(params[:offset].to_i).limit(params[:limit].to_i || 20)

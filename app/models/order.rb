@@ -28,6 +28,8 @@ class Order < ApplicationRecord
     end
   }
 
+  default_scope { order("updated_at desc") }
+
   before_validation do
     self.node_id = car.node_id
     self.brand_id = car.brand_id
