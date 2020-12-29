@@ -44,7 +44,13 @@ class Car < ApplicationRecord
 
   # 应该要用缓存
   def codes
-    sub_node.codes.where(cid: code_options)
+    ces = sub_node.codes.where(cid: code_options).to_a
+    arr = []
+    code_options.each do |x|
+      ft = ces.select{|y| y.cid == x}.first
+      arr << ft
+    end
+    arr
   end
 
   after_commit :recharge_msrp
